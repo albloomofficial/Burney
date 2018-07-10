@@ -133,6 +133,15 @@ def initialize_driver(page, term):
 def run_thru_pages(term, page_range, increment):
     filename_date = str(datetime.date.today())
     name = multiprocessing.current_process().name
+    with open('{}_{}_{}.csv'.format(name, filename_date, term),
+    'w') as f:
+            writer = csv.writer(f)
+            writer.writerow(['origin',
+            'location',
+            'date',
+            'source',
+            'image_link',
+            'gale_number'])
     page = page_range + 1
     driver = initialize_driver(page, term)
     print(name, ' scanning pages ', page_range, " to ", page_range + increment)
@@ -210,15 +219,7 @@ if __name__ == "__main__":
     for term in list_of_terms:
         print(term)
         filename_date = str(datetime.date.today())
-        with open('Srcs_Burney_{}_{}.csv'.format(filename_date, term),
-        'w') as f:
-                writer = csv.writer(f)
-                writer.writerow(['origin',
-                'location',
-                'date',
-                'source',
-                'image_link',
-                'gale_number'])
+
 
         pages = get_page_count(term)
         print(pages)
