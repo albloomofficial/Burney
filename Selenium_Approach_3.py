@@ -4,7 +4,7 @@ from time import sleep
 import datetime
 import csv
 import multiprocessing
-from multiprocessing import cpu_count()
+from multiprocessing import cpu_count
 import math
 from selenium.webdriver.support.ui import Select
 
