@@ -200,7 +200,7 @@ def run_thru_pages(term, page_range, increment):
 
             #append information to a list and print it as a new row in the csv
             final_data = zip(*[author,location, date, sources, src_links, gale_number])
-            with open('Srcs_Burney_{}_{}.csv'.format(filename_date, term), 'a') as f:
+            with open('{}_{}_{}.csv'.format(name,filename_date, term), 'a') as f:
                 writer = csv.writer(f)
                 writer.writerows(final_data)
         except:
