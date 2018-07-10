@@ -194,15 +194,17 @@ def run_thru_pages(term, page_range, increment):
             sleep(1)
             next_button = driver.find_elements_by_xpath('//img[@src="images/b_next.gif"]')
 
-            page += 1
-            print(name, ": Moving onto article {}".format(page))
-            next_button[0].click()
-
             #append information to a list and print it as a new row in the csv
             final_data = zip(*[author,location, date, sources, src_links, gale_number])
             with open('{}_{}_{}.csv'.format(name,filename_date, term), 'a') as f:
                 writer = csv.writer(f)
                 writer.writerows(final_data)
+
+            page += 1
+            print(name, ": Moving onto article {}".format(page))
+            next_button[0].click()
+
+
         except:
             sleep(60*60)
             driver = initialize_driver(page)
