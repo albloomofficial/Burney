@@ -1,6 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-import time
+from time import sleep
 import datetime
 import csv
 import multiprocessing
@@ -16,7 +16,7 @@ def get_page_count(term):
         driver.implicitly_wait(10)
         driver.get("http://find.galegroup.com/bncn/dispAdvSearch.do?prodId=BBCN&userGroupName=new64731")
         driver.find_element_by_xpath('//*[@id="la_dynamicLimiterField"]/option[3]').click()
-        time.sleep(5)
+        sleep(5)
         search_field = driver.find_elements_by_css_selector('#inputFieldValue')[1]
         search_field.click()
         search_field.send_keys(term)
@@ -71,7 +71,7 @@ def initialize_driver(page, term):
 
     driver.get("http://find.galegroup.com/bncn/dispAdvSearch.do?prodId=BBCN&userGroupName=new64731")
     driver.find_element_by_xpath('//*[@id="la_dynamicLimiterField"]/option[3]').click()
-    time.sleep(5)
+    sleep(5)
     search_field = driver.find_elements_by_css_selector('#inputFieldValue')[1]
     search_field.click()
     search_field.send_keys(term)
@@ -113,12 +113,12 @@ def initialize_driver(page, term):
     #wait for the website to load, then click on "Page"
     print(name, 'waiting for elements to load')
 
-    time.sleep(5)
+    sleep(5)
     driver.find_element_by_xpath('//*[@id="content"]/table[1]/tbody/tr/td[3]/form/table[3]/tbody/tr[1]/td[2]/table/tbody/tr/td[2]/table/tbody/tr/td[2]/a[1]').click()
-    time.sleep(5)
+    sleep(5)
     select = Select(driver.find_element_by_xpath('//*[@id="fascimileForm"]/table/tbody/tr/td[5]/font/select'))
     select.select_by_visible_text("200%")
-    time.sleep(5)
+    sleep(5)
 
 
     page_selector = driver.find_element_by_xpath('//*[@id="currPosTop"]')
@@ -141,7 +141,7 @@ def run_thru_pages(term, page_range, increment):
         if page != 0:
             if page % 100 == 0:
                 print(name, " : Trying to not overload the server")
-                time.sleep(60)
+                sleep(60)
 
         # reset lists
         author = []
@@ -182,7 +182,7 @@ def run_thru_pages(term, page_range, increment):
             input_element = driver.find_element_by_xpath('//*[@id="documentTable"]/tbody/tr/td[3]/div[2]')
             gale_number.append(input_element.text.split(': ')[1])
 
-            time.sleep(1)
+            sleep(1)
             next_button = driver.find_elements_by_xpath('//img[@src="images/b_next.gif"]')
 
             page += 1
@@ -195,7 +195,7 @@ def run_thru_pages(term, page_range, increment):
                 writer = csv.writer(f)
                 writer.writerows(final_data)
         except:
-            time.sleep(60*60)
+            sleep(60*60)
             driver = initialize_driver(page)
 
 
