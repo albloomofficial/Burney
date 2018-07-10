@@ -4,6 +4,7 @@ from time import sleep
 import datetime
 import csv
 import multiprocessing
+from multiprocessing import cpu_count()
 import math
 from selenium.webdriver.support.ui import Select
 
@@ -12,7 +13,6 @@ def get_page_count(term):
         options = webdriver.ChromeOptions()
         options.add_argument('headless')
         driver = getattr(webdriver, 'Chrome')(chrome_options=options)
-        # driver = webdriver.Chrome()
         driver.implicitly_wait(10)
         driver.get("http://find.galegroup.com/bncn/dispAdvSearch.do?prodId=BBCN&userGroupName=new64731")
         driver.find_element_by_xpath('//*[@id="la_dynamicLimiterField"]/option[3]').click()
@@ -64,7 +64,7 @@ def get_page_count(term):
 
 def initialize_driver(page, term):
     options = webdriver.ChromeOptions()
-    # options.add_argument('headless')
+    options.add_argument('headless')
     name = multiprocessing.current_process().name
     print(name, "initializing driver")
     driver = getattr(webdriver, 'Chrome')(chrome_options=options)
@@ -223,12 +223,12 @@ if __name__ == "__main__":
         pages = get_page_count(term)
         print(pages)
 
-        driver_names = ["driver{}".format(i+1) for i in range(int(multiprocessing.cpu_count()*3/4))]
+        driver_names = ["driver{}".format(i+1) for i in range(int(cpu_count()))]
 
-        increment = math.ceil(pages / (multiprocessing.cpu_count()*3/4))
+        increment = math.ceil(pages / int(cpu_count()))
         print(increment)
         procs = []
-        for i in range(int(multiprocessing.cpu_count()*3/4)):
+        for i in range(int(cpu_count())):
             url_range = increment * i
             new_process = multiprocessing.Process(name=driver_names[i], target=run_thru_pages, args = (term, url_range, increment))
             procs.append(new_process)
