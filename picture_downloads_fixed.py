@@ -32,7 +32,7 @@ def send_pix(csv_file, cell_range, increment, save_folder):
         print('{} working on page {} in article {}'.format(name, page_num + 1, god_damnit + 1))
         page = page + 1
         try:
-            os.makedirs("Articles_names/{}/{}/{}".format(location1[page_num],names1[page_num], date1[page_num]))
+            os.makedirs("Articles_names/{}/{}/{}/{}".format(save_folder,location1[page_num],names1[page_num], date1[page_num]))
             god_damnit = god_damnit + 1
             page = 1
             urllib.request.urlretrieve(picture, "Articles_names/{}/{}/{}/{}/{}{}.jpg".format(save_folder, location1[page_num],names1[page_num], date1[page_num], names1[page_num], page))
