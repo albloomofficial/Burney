@@ -19,8 +19,8 @@ def send_pix(csv_file, cell_range, increment, save_folder):
     df = pd.read_csv(csv_file)
     urls = [x for y in df.values.tolist() for x in y]
     links = urls[4::6]
-    names = [unicode(s) for s in urls[0::6]]
-    location = [unicode(s) for s in urls[1::6]]
+    names = [0::6]
+    location = urls[1::6]
     date = urls[2::6]
     gale = urls[5::6]
     links1 = links[starting_pos:starting_pos + increment]
