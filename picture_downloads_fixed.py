@@ -42,6 +42,7 @@ def send_pix(csv_file, cell_range, increment):
             urllib.request.urlretrieve(picture, "Articles_names/{}/{}/{}/{}{}.jpg".format(location1[page_num],names1[page_num], date1[page_num], names1[page_num], page))
         page_num = page_num + 1
         print('progress worker {}: {}%'.format(name, (page_num/len(names1))*100))
+    print('done with one csv file')
 
 if __name__ == "__main__":
     for csv_file in os.listdir('.'):
@@ -60,5 +61,4 @@ if __name__ == "__main__":
             for proc in procs:
                 proc.start()
             for proc in procs:
-                proc.close()
                 proc.join()
