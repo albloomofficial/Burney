@@ -75,7 +75,7 @@ The two chunks of code you are editing should look like this:
     'african trade'
     ]
 ```
-Here you will put as many terms as you would like to search for 1 by 1 separated by commas. It is important to put each word in quotes 
+Here you will put as many terms as you would like to search for 1 by 1 separated by commas. It is important to put each word in quotes
 in order to specify to python that this is a string and not a variable.
 
 
@@ -107,14 +107,14 @@ in order to specify to python that this is a string and not a variable.
     select = Select(day2)
     select.select_by_value('{}'.format('31'))
     ```
-    
-    The first three chunks "year1", "month1" and "day1" are the starting date of the search. The only part that needs editig is the part 
+
+    The first three chunks "year1", "month1" and "day1" are the starting date of the search. The only part that needs editig is the part
     in between quotes
-    (the string) after the ".format" part. 
-    
-    The second part "year2", "month2" and "day2" are the end date of the search. The only part that needs editig 
+    (the string) after the ".format" part.
+
+    The second part "year2", "month2" and "day2" are the end date of the search. The only part that needs editig
     is the part in between quotes
-    (the string) after the ".format" part. 
-    
-   This is still a little rough. But in the stamascraper version of this it's a little less complicated but I can't get it to work 
+    (the string) after the ".format" part.
+```  
+   This is still a little rough. But in the stamascraper version of this it's a little less complicated but I can't get it to work
    as a larger function. In later versions this could be made a lot more elegant
