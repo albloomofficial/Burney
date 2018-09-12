@@ -4,8 +4,8 @@ Using this repository you will be able to specify the time range you are working
 ## Understanding the files in the folder
 This folder includes the following files:
 
-### Berlin_Scraper:
-The berlin scraper file is a shell script. On a Mac OSX or Linux computer it will run all the commands necessary to set up the
+### Burney_Scraper:
+The Burney scraper file is a shell script. On a Mac OSX or Linux computer it will run all the commands necessary to set up the
 project and begin looking for image links and then download them.
 The goal with this file is to maintain the file so that you can double click it and immediately start downloading pictures.
 
